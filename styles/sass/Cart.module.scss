@@ -1,0 +1,117 @@
+.container {
+    display: flex;
+    min-height: 50vh;
+    padding: 50px;
+
+    &_left {
+        flex: 2;
+
+        &_table {
+            width: 100%;
+            border-spacing: 20px;
+
+            &_dataTr {
+
+                &_td {
+                    text-align: center;
+
+                    &_name {
+                        color: #f3703d;
+                        font-weight: 500;
+                    }
+                    &_imgContainer {
+                        position: relative;
+                        width: 90px;
+                        height: 90px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+
+            }
+        }
+    }
+
+    &_right {
+        flex: 1;
+        color: #fff;
+
+
+        &_box {
+            background-color: rgb(80, 75, 75);
+            padding: 40px 0px 40px 40px;
+            width: 80%;
+
+            &_amounts {
+                line-height: 1.6;
+            }
+
+            &_checkoutBtn {
+                color: #f3703d;
+                padding: 5px 10px;
+                font-weight: 500;
+                width: 50%;
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+@media screen and ( max-width: 480px ) {
+    .container {
+        flex-direction: column;
+        padding: 50px 20px;
+        &_left {
+            &_table {
+                border-spacing: 0;
+                &_headingTr {
+                    display: none;
+                }
+
+                &_dataTr {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 0 0 20px 0;
+
+                    &_td {
+
+                        &_imgContainer {
+                            width: 120px;
+                            height: 120px;
+                        }
+                        &_name {
+                            font-size: 24px;
+                            font-weight: 500;
+                        }
+
+                        &_ingred, &_price, &_quantity, &_total {
+                            font-size: 18px;
+                        }
+
+                        &_price::before {
+                            content: 'Price: ';
+                            font-weight: 500;
+                        }
+
+                        &_quantity::before {
+                            content: 'Quantity: ';
+                            font-weight: 500;
+                        }
+
+                        &_total::before {
+                            content: 'Total: ';
+                            font-weight: 500;
+                        }
+                    }
+                }
+            }
+        }
+
+        &_right {
+            &_box {
+                width: 100%;
+            }
+        }
+    }
+}

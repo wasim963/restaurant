@@ -1,0 +1,166 @@
+.container {
+    box-sizing: border-box;
+    height: calc(100vh - 100px);
+    display: flex;
+
+    &_left {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &_imgContainer {
+            height: 80%;
+            width: 80%;
+            position: relative;
+        }
+    }
+
+    &_right {
+        flex: 1;
+        padding: 30px 20px 20px 20px;
+        box-sizing: border-box;
+
+        &_name {
+            font-size: 32px;
+        }
+
+        &_price {
+            color: rgb(255, 133, 51);
+            font-size: 24px;
+            border-bottom: 1px solid rgb(240, 84, 45);
+        }
+
+        &_desc {
+            color: rgb(160, 156, 156);
+            width: 60%;
+        }
+
+        &_choose {
+            font-size: 28px;
+        }
+
+        &_sizes {
+            width: 40%;
+            display: flex;
+            justify-content: space-between;
+
+            &_size {
+                height: 30px;
+                width: 30px;
+                position: relative;
+                cursor: pointer;
+
+                &_number {
+                    background-color: teal;
+                    position: absolute;
+                    right: -15px;
+                    top: -10px;
+                    border-radius: 40%;
+                    color: #fff;
+                    font-size: 12px;
+                    padding: 2px;
+                }
+            }
+
+            &_size:nth-child(2) {
+                height: 40px;
+                width: 40px;
+            }
+
+            &_size:nth-child(3) {
+                height: 50px;
+                width: 50px;
+            }
+        }
+
+        &_titleIngred {
+            font-size: 28px;
+        }
+
+        &_ingredients {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            &_option {
+                display: flex;
+                align-items: center;
+                &_checkbox {
+                    width: 20px;
+                    height: 20px;
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        &_add {
+            margin-top: 20px;
+            &_quantity {
+                width: 60px;
+                height: 30px;
+                margin-right: 10px;
+            }
+
+            &_button {
+                height: 30px;
+                width: 100px;
+                cursor: pointer;
+                background-color: rgba(247, 65, 20, 0.774);
+                border: none;
+                color: #fff;
+            }
+        }
+
+    }
+}
+
+@media screen and ( max-width: 480px ) {
+    .container {
+        height: auto;
+        text-align: center;
+        flex-direction: column;
+        margin-top: 20px;
+
+        &_left {
+            height: auto;
+            &_imgContainer {
+                width: 70vw;
+                height: 70vw;
+            }
+        }
+
+        &_right {
+
+            &_desc {
+                width: 80%;
+                text-align: center;
+            }
+
+            &_sizes {
+                width: 90%;
+            }
+            &_titleIngred {
+                font-size: 20px;
+            }
+
+            &_ingredients {
+                flex-direction: column;
+
+                &_option {
+                    &_checkbox {
+                        width: 25px;
+                        height: 25px;
+                    }
+                }
+            }
+
+            &_add {
+                &_quantity, &_button {
+                    height: 50px;
+                    padding: 10px;
+                }
+            }
+        }
+    }
+}

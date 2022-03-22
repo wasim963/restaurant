@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 10px;
+
+    &_title {
+        color: #d1411e;
+    }
+
+    &_desc {
+        width: 70%;
+    }
+
+    &_wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        position: relative;
+    }
+}
+
+@media screen and ( max-width: 480px ) {
+    .container {
+        &_title {
+            text-align: center;
+        }
+
+        &_desc {
+            width: 90%;
+            font-size: 18px;
+            text-align: center;
+        }
+    }
+}

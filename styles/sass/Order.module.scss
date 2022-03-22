@@ -1,0 +1,153 @@
+.container {
+    display: flex;
+    min-height: 50vh;
+    padding: 50px;
+
+    &_left {
+        flex: 2;
+
+        &_row {
+            width: 100%;
+            &_table {
+                width: 100%;
+                border-spacing: 20px;
+    
+                &_dataTr {
+    
+                    &_td {
+                        text-align: center;
+                    }
+    
+                }
+            }
+        }
+
+        &_row:last-child {
+            display: flex;
+            justify-content: space-between;
+            width: 60%;
+            margin: 5% 0 0 10%;
+
+            .done {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .inProgress {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                animation: InProgress 1s infinite alternate;
+            }
+
+            .undone {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                opacity: 0.35;
+            }
+
+            .inProgress .checkedIcon, .undone .checkedIcon {
+                display: none;
+            }
+        }
+    }
+
+    &_right {
+        flex: 1;
+        color: #fff;
+
+
+        &_box {
+            background-color: rgb(80, 75, 75);
+            padding: 40px 0px 40px 40px;
+            width: 80%;
+
+            &_amounts {
+                line-height: 1.6;
+            }
+
+            &_checkoutBtn {
+                color: teal;
+                padding: 5px 10px;
+                font-weight: 500;
+                width: 70%;
+                font-size: 18px;
+                cursor: not-allowed;
+            }
+        }
+    }    
+}
+
+@keyframes InProgress {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.45;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@media screen and ( max-width: 480px ) {
+    .container {
+        flex-direction: column;
+        padding: 20px 20px 50px 20px;
+
+        &_left {
+            &_row {
+                &_table {
+                    &_headingTr {
+                        display: none;
+                    }
+
+                    &_dataTr {
+                        display: flex;
+                        flex-direction: column;
+                        width: 90%;
+                        text-align: center;
+
+                        &_td {
+                            &_orderId::before {
+                                content: 'Order ID: ';
+                                font-weight: 500;
+                            }
+                            &_name::before {
+                                content: 'Name: ';
+                                font-weight: 500;
+                            }
+                            &_address::before {
+                                content: 'Address: ';
+                                font-weight: 500;
+                            }
+                            &_total::before {
+                                content: 'Total: ';
+                                font-weight: 500;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            &_row:last-child {
+                flex-direction: column;
+                width: 100%;
+                margin: 0;
+
+                .done, .inProgress, .undone {
+                    margin-bottom: 20px;
+                }
+            }
+        }
+
+        &_right {
+            &_box {
+                width: 100%;
+            }
+        }
+    }
+}
