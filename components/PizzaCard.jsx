@@ -1,17 +1,20 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import styles from '../styles/sass/PizzaCard.module.scss'
 
-const PizzaCard = () => {
+const PizzaCard = ( { pizza } ) => {
   return (
     <div className={ styles.container } >
         <div className={ styles.container_imgContainer } >
-            <Image src='/img/pizza.png' alt='' width='500' height='500' />
+          <Link href={ `/product/${ pizza._id }` } passHref >
+            <Image src={ pizza.image } alt='' width='500' height='500' />
+          </Link>
         </div>
-        <h3 className={ styles.container_title  } >FLORI DI ZUCCA</h3>
-        <span className={ styles.container_price } >$19.90</span>
-        <p className={ styles.container_desc } >Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Illum facilis earum ea tempore voluptates iure rem sed quos doloremque voluptas!
+        <h3 className={ styles.container_title  } >{ pizza.title }</h3>
+        <span className={ styles.container_price } > { pizza.prices[ 0 ] } </span>
+        <p className={ styles.container_desc } >
+          { pizza.desc }
         </p>
     </div>
   )

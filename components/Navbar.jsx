@@ -1,8 +1,13 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styles from '../styles/sass/Navbar.module.scss'
 
+
 export const Navbar = () => {
+
+    const quantity   = useSelector( ( state ) => state.cart.quantity )
   return (
     <div className={ styles.container } >
         <div className={ styles.container_left }>
@@ -16,7 +21,9 @@ export const Navbar = () => {
         </div>
         <div className={ styles.container_mid }>
             <ul className={ styles.container_mid_list }  >
-                <li className={ styles.container_mid_list_item } >Homepage</li>
+                <Link href='/' passHref >
+                    <li className={ styles.container_mid_list_item } >Homepage</li>
+                </Link>
                 <li className={ styles.container_mid_list_item }>Products</li>
                 <li className={ styles.container_mid_list_item }>Menu</li>
                 <li className={ styles.container_mid_list_item }>
@@ -28,10 +35,12 @@ export const Navbar = () => {
             </ul>
         </div>
         <div className={ styles.container_right }>
-            <div className={ styles.container_right_cart } >
-                <Image src='/img/cart.png' objectFit='contain' width='50' height='50' alt='' />
-                <div className={ styles.container_right_cart_counter }>2</div>
-            </div>
+            <Link href='/cart' passHref>
+                <div className={ styles.container_right_cart } >
+                    <Image src='/img/cart.png' objectFit='contain' width='50' height='50' alt='' />
+                    <div className={ styles.container_right_cart_counter }>{ quantity }</div>
+                </div>
+            </Link>
         </div>
     </div>
   )

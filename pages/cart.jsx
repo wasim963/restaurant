@@ -1,8 +1,11 @@
 import Image from 'next/image'
 import React from 'react'
-import styles from '../styles/sass/Cart.module.scss'
+import { useSelector } from 'react-redux';
+import styles from '../styles/sass/Cart.module.scss';
 
 const Cart = () => {
+
+    const { products, total } = useSelector( state => state.cart )
   return (
     <div className={ styles.container } >
         <div className={ styles.container_left } >
@@ -16,27 +19,33 @@ const Cart = () => {
                     <th>Total</th>
                 </tr>
                 {
-                    [1, 2, 3, 4, 5].map( ( item, index ) => (
+                    products.map( ( product, index ) => (
                         <tr key={index} className={ styles.container_left_table_dataTr } >
                             <td className={ styles.container_left_table_dataTr_td } style={{ display:'flex', justifyContent:'center' }} >
                                 <div className={ styles.container_left_table_dataTr_td_imgContainer } >
-                                    <Image src='/img/pizza.png' objectFit='contain' layout='fill' alt='' />
+                                    <Image src={ product.image } objectFit='contain' layout='fill' alt='' />
                                 </div>
                             </td>
                             <td className={ styles.container_left_table_dataTr_td } >
-                            <span className={ styles.container_left_table_dataTr_td_name } >CORALZO</span>
+                            <span className={ styles.container_left_table_dataTr_td_name } >{ product.title }</span>
                             </td>
                             <td className={ styles.container_left_table_dataTr_td } >
-                                <span className={ styles.container_left_table_dataTr_td_ingred } >Double Ingredients, Spicy Sauce</span>
+                                <span className={ styles.container_left_table_dataTr_td_ingred } >
+                                    {
+                                        product.extras.map( extra => (
+                                            <span key={extra._id} >{ extra.text }, </span>
+                                        ) )
+                                    }
+                                </span>
                             </td>
                             <td className={ styles.container_left_table_dataTr_td } >
-                                <span className={ styles.container_left_table_dataTr_td_price } >$19.90</span>
+                                <span className={ styles.container_left_table_dataTr_td_price } >${ product.price }</span>
                             </td>
                             <td className={ styles.container_left_table_dataTr_td } >
-                                <span className={ styles.container_left_table_dataTr_td_quantity } >2</span>
+                                <span className={ styles.container_left_table_dataTr_td_quantity } >{ product.quantity }</span>
                             </td>
                             <td className={ styles.container_left_table_dataTr_td } >
-                                <span className={ styles.container_left_table_dataTr_td_total } >$39.80</span>
+                                <span className={ styles.container_left_table_dataTr_td_total } >${ product.price * product.quantity }</span>
                             </td>
                         </tr>
                     ) )
@@ -47,9 +56,9 @@ const Cart = () => {
             <div className={ styles.container_right_box } >
                 <h1>CART TOTAL</h1>
                 <p className={ styles.container_right_box_amounts } >
-                    <span><b>Subtotal</b>: $79.40</span><br/>
+                    <span><b>Subtotal</b>: ${ total }</span><br/>
                     <span><b>Discount</b>: $0.00</span><br/>
-                    <span><b>Total</b>: $79.40</span>
+                    <span><b>Total</b>: ${ total } </span>
                 </p>
                 <button className={ styles.container_right_box_checkoutBtn } >CHECKOUT NOW!</button>
             </div>

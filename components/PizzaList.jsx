@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../styles/sass/PizzaList.module.scss'
 import PizzaCard from './PizzaCard';
 
-const PizzaList = () => {
+const PizzaList = ( { pizzaList } ) => {
   return (
     <div className={ styles.container } >
         <h1 className={ styles.container_title } >THE BEST PIZZA IN TOWN</h1>
@@ -14,14 +14,11 @@ const PizzaList = () => {
             optio tempora maiores a, provident assumenda.
         </p>
         <div className={ styles.container_wrapper } >
-            <PizzaCard />
-            <PizzaCard />
-            <PizzaCard />
-            <PizzaCard />
-            <PizzaCard />
-            <PizzaCard />
-            <PizzaCard />
-            <PizzaCard />
+          {
+            pizzaList.map( pizza => (
+                <PizzaCard key={pizza._id} pizza={ pizza }  />
+            ) )
+          }
         </div>
     </div>
   )
