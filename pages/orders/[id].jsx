@@ -1,10 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
 import styles from '../../styles/sass/Order.module.scss'
+import axios from 'axios';
 
-const Order = () => {
+const Order = ( { order } ) => {
 
-    const status = 1;
+    const status = order.status;
     const statusClass = ( index ) => {
         if( index - status < 1 ) {
             return styles.done
@@ -19,30 +20,30 @@ const Order = () => {
         <div className={ styles.container_left } >
           <div className={ styles.container_left_row } >
             <table className={ styles.container_left_row_table } >
-                <tr className={ styles.container_left_row_table_headingTr } >
-                    <th>Order ID</th>
-                    <th>Customer</th>
-                    <th>Address</th>
-                    <th>Total</th>
-                </tr>
-                {
-                  [1].map( ( item, index ) => (
-                      <tr key={index} className={ styles.container_left_row_table_dataTr } >
-                          <td className={ styles.container_left_row_table_dataTr_td } >
-                          <span className={ styles.container_left_row_table_dataTr_td_orderId } >12345654321</span>
-                          </td>
-                          <td className={ styles.container_left_row_table_dataTr_td } >
-                              <span className={ styles.container_left_row_table_dataTr_td_name } >John Doe</span>
-                          </td>
-                          <td className={ styles.container_left_row_table_dataTr_td } >
-                              <span className={ styles.container_left_row_table_dataTr_td_address } >Arrabari 234, 855107 </span>
-                          </td>
-                          <td className={ styles.container_left_row_table_dataTr_td } >
-                              <span className={ styles.container_left_row_table_dataTr_td_total } >$39.80</span>
-                          </td>
-                      </tr>
-                  ) )
-                }
+                <thead>
+                    <tr className={ styles.container_left_row_table_headingTr } >
+                        <th className={ styles.container_left_row_table_headingTr_th } >Order ID</th>
+                        <th className={ styles.container_left_row_table_headingTr_th } >Customer</th>
+                        <th className={ styles.container_left_row_table_headingTr_th } >Address</th>
+                        <th className={ styles.container_left_row_table_headingTr_th } >Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr className={ styles.container_left_row_table_dataTr } >
+                        <td className={ styles.container_left_row_table_dataTr_td } >
+                        <span className={ styles.container_left_row_table_dataTr_td_orderId } >{ order._id }</span>
+                        </td>
+                        <td className={ styles.container_left_row_table_dataTr_td } >
+                            <span className={ styles.container_left_row_table_dataTr_td_name } >{ order.customer }</span>
+                        </td>
+                        <td className={ styles.container_left_row_table_dataTr_td } >
+                            <span className={ styles.container_left_row_table_dataTr_td_address } >{ order.address } </span>
+                        </td>
+                        <td className={ styles.container_left_row_table_dataTr_td } >
+                            <span className={ styles.container_left_row_table_dataTr_td_total } >${ order.total }</span>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
           </div>
           <div className={ styles.container_left_row } >
@@ -80,15 +81,25 @@ const Order = () => {
             <div className={ styles.container_right_box } >
                 <h1>CART TOTAL</h1>
                 <p className={ styles.container_right_box_amounts } >
-                    <span><b>Subtotal</b>: $79.40</span><br/>
+                    <span><b>Subtotal</b>: ${ order.total }</span><br/>
                     <span><b>Discount</b>: $0.00</span><br/>
-                    <span><b>Total</b>: $79.40</span>
+                    <span><b>Total</b>: ${ order.total }</span>
                 </p>
                 <button className={ styles.container_right_box_checkoutBtn } >PAID</button>
             </div>
         </div>
     </div>
   )
+}
+
+export const getServerSideProps = async( { params } ) => {
+    const res = await axios.get( `http://localhost:3000/api/orders/${ params.id }`  );
+
+    return {
+        props: {
+            order: res.data
+        }
+    }
 }
 
 export default Order

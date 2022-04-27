@@ -11,6 +11,10 @@ const OrderSchema = new mongoose.Schema( {
         required: true,
         maxlength: 200
     },
+    total: {
+        type: Number,
+        required: true
+    },
     status:{
         type: Number,
         default: 0
