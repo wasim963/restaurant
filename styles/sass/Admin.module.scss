@@ -1,0 +1,49 @@
+.container {
+    display: flex;
+    padding: 30px;
+
+    &_item {
+        flex: 1;
+
+        &_title {
+            font-size: 30px;
+            margin-left: 20px;
+        }
+
+        &_table {
+            width: 100%;
+            border-spacing: 20px;
+            text-align: left;
+        }
+    }
+}
+
+.editBtn {
+    margin-right: 10px;
+    background: green;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    padding: 4px 6px;
+    border-radius: 2px;
+}
+
+.deleteBtn {
+    margin-right: 10px;
+    background-color: crimson;
+    cursor: pointer;  
+    border: none;
+    color: #fff;
+    padding: 4px 6px;
+    border-radius: 4px;
+}
+
+.nextBtn {
+    margin-right: 10px;
+    background-color: teal;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    padding: 4px 6px;
+    border-radius: 4px;
+}

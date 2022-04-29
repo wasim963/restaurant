@@ -14,12 +14,12 @@ const handler = async( req, res ) => {
             return res.status( 500 ).json( error )
         }
     } else if( 'PUT' === method ) {
-        // try {
-        //     const order = await Order.create( req.body );
-        //     return res.status( 201 ).json( order )
-        // } catch (error) {
-        //     return res.status( 500 ).json( error )
-        // }
+        try {
+            const order = await Order.findByIdAndUpdate( id, req.body, { new: true } );
+            return res.status( 201 ).json( order )
+        } catch (error) {
+            return res.status( 500 ).json( error )
+        }
     } else if( 'DELETE' === method ) {
 
     }

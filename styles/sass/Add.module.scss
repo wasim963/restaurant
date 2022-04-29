@@ -1,0 +1,113 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(134, 131, 131, 0.214);
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 50px;
+
+    &_wrapper {
+        background: #fff;
+        width: 600px;
+        z-index: 999;
+        padding: 30px 50px 50px 50px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        position: relative;
+
+        &_close {
+            width: 40px;
+            height: 40px;
+            background: coral;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: #fff;
+            font-size: 20px;
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-weight: 600;
+        }
+
+        &_title {
+            font-size: 24px;
+            text-align: center;
+            color: coral;
+        }
+
+        &_item {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            &_label {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+
+            &_file {
+                font-size: 20px;
+            }
+
+            &_input {
+                height: 40px;
+                border: none;
+                outline: none;
+                border-bottom: 1px solid grey;
+                font-size: 16px;
+            }
+
+            &_textarea {
+                font-size: 20px;
+            }
+
+            &_extras,
+            &_prices {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                &_input {
+                    height: 40px;
+                    width: 30%;
+                    border: none;
+                    outline: none;
+                    border-bottom: 1px solid grey;
+                    font-size: 16px;
+                }
+
+                &_btn {
+                    border: none;
+                    cursor: pointer;
+                    height: 40px;
+                    width: 20%;
+                    background-color: teal;
+                    color: #fff;
+                    font-size: 16px;
+                    border-radius: 5%;
+                }
+            }
+        }
+
+        &_createBtn {
+            height: 40px;
+            width: 30%;
+            border: none;
+            outline: none;
+            font-size: 20px;
+            align-self: flex-end;
+            background-color: teal;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+    }
+}

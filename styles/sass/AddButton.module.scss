@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+
+    &_btn {
+        background-color: tomato;
+        cursor: pointer;
+        border: none;
+        font-size: 20px;
+        font-weight: 500;
+        padding: 6px 8px;
+        color: #fff;
+        margin: 20px 0px 0px 10px;
+    }
+}
