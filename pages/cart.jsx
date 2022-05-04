@@ -83,7 +83,6 @@ const Cart = () => {
                         return actions.order.capture().then(function ( details ) {
                             // Your code here after capture the order
                             const shipping = details.purchase_units[ 0 ].shipping;
-                            console.log('shipping', shipping)
                             createOrder( { 
                                 customer: shipping.name.full_name, 
                                 address: shipping.address.address_line_1, 

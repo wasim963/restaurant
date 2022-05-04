@@ -17,7 +17,8 @@ const Add = ( { setClose } ) => {
     }
 
     const handleExtraInput = e => {
-        setExtra( { ...extra, [ e.target.name ]: parseInt( e.target.value ) }  )
+        const name = [ e.target.name ];
+        setExtra( { ...extra, [ e.target.name ]: e.target.name === 'text' ? e.target.value : parseInt( e.target.value ) }  )
     }
 
     const handleExtras = () => {
@@ -26,18 +27,32 @@ const Add = ( { setClose } ) => {
 
     const handleCreate = async() => {
 
-        try {
-            const res = await axios.post( 'http://localhost:3000/api/products', {
-                title,
-                image:'/img/pizza.png',
-                desc,
-                prices,
-                extraOptions
-            } )   
-            setClose( true )
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', 'uploads');
 
+        try {
+            const dataRes = await axios.post(
+                'https://api.cloudinary.com/v1_1/dd4p4aju8/image/upload',
+                formData 
+            );
+
+            const { url } = dataRes.data;
+            try {
+                const res = await axios.post( 'http://localhost:3000/api/products', {
+                    title,
+                    image: url,
+                    desc,
+                    prices,
+                    extraOptions
+                } ) 
+                res.status === 201 && setClose( true );
+
+            } catch (error) {
+                console.log(error)
+            }
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 
@@ -137,7 +152,7 @@ const Add = ( { setClose } ) => {
                     <input
                         className={ styles.container_wrapper_item_extras_input }
                         type='number'
-                        placeholder='Quantity'
+                        placeholder='Price'
                         onChange={handleExtraInput}
                         name='price'
                     />

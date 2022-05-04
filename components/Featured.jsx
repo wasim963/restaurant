@@ -19,8 +19,6 @@ const Featured = () => {
         }
     }
 
-    console.log(slideNumber)
-
   return (
     <div className={ styles.container } >
         <div className={ styles.container_arrow } style={{ left: '0' }} onClick={ () => handleArrow('l') } >
